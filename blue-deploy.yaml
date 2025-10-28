@@ -1,22 +1,23 @@
-# deployment-template.yaml
+# blue-deploy.yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ${APP_NAME}
+  name: my-web-app-blue
 spec:
   replicas: 2
   selector:
     matchLabels:
       app: my-web-app
-      color: ${COLOR}
+      color: blue
   template:
     metadata:
       labels:
         app: my-web-app
-        color: ${COLOR}
+        color: blue
     spec:
       containers:
       - name: my-web-app-container
-        image: ${IMAGE_WITH_TAG}
+        # Use the image you just pushed
+        image: "bakasensei/my-web-app:7"
         ports:
         - containerPort: 8080
